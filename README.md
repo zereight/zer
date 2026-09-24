@@ -19,7 +19,7 @@ Public home of the zereight-review skill and its deterministic helpers.
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-  then restart your shell (or run `source "$HOME/.cargo/env"`) and re-run `cargo --version`.
+  (accept the defaults when prompted), then restart your shell (or run `source "$HOME/.cargo/env"`) and re-run `cargo --version`.
 
 ### Install
 
@@ -37,11 +37,11 @@ Expected: lists the `manifest` and `verify` subcommands. If you see `zer: comman
 
     export PATH="$HOME/.cargo/bin:$PATH"
 
-and persist it in `~/.zshrc` (macOS default) or `~/.bashrc`.
+and persist it in `~/.zshrc` (macOS default) or `~/.bashrc`, then open a new terminal (or `source` the file).
 
 ### Usage
 
-    # 1. Build the manifest from a three-dot diff
+    # 1. Build the manifest from a three-dot diff (range: base...HEAD)
     zer manifest --repo /path/to/repo --base origin/main --out /tmp/manifest.json
 
     # 2. Verify finding line refs (findings follow schema/finding.schema.json)
@@ -49,15 +49,15 @@ and persist it in `~/.zshrc` (macOS default) or `~/.bashrc`.
 
 ### Update / uninstall
 
-    cd zereight-review && git pull && cargo install --path zer --locked   # update
-    cargo uninstall zer                                                   # uninstall
+    git pull && cargo install --path zer --locked   # update (from the repo root)
+    cargo uninstall zer                             # uninstall
 
 ### Developing
 
-    cargo test --manifest-path zer/Cargo.toml   # run the suite (11 tests)
+    cargo test --manifest-path zer/Cargo.toml   # run the suite
 
 ### Output shapes
 
 Manifest: `{ version, base, head, files: [{ path, status, hunks: [{ start, count }] }], scopes: { react_rn, tests, motion, navigation, sonar, rn_security }, bundles: [{ key, files }] }`. Each scope is `{ in_scope, files }`. Verdicts: `ok`, `out-of-hunk`, `unknown-file`, `invalid-record`.
 
-Known limits: findings must cite new-file lines inside changed hunks (pure-deletion hunks accept none); binary files carry zero hunks; scope matchers over-trigger by design (extra pass beats missed coverage); paths with spaces or quotes are not unquoted.
+Known limits: findings must cite new-file lines inside changed hunks (pure-deletion hunks accept none); binary files carry zero hunks; scope matchers over-trigger by design (extra pass beats missed coverage); file paths containing spaces or quotes are matched verbatim and may miss git's quoted output.
