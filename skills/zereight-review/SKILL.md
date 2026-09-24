@@ -46,6 +46,7 @@ Required instruction sources to load before reviewing:
 - `references/test-review-gate.md` (this skill — test necessity, duplication/placement, slop, axis-linked gaps; RNTL lens when RN component tests)
 - `references/problem-map-output.md` (this skill — **문제 지도** fields: 어디/뭐/언제/유저영향/우선순위)
 - `references/output-format.md` (this skill — **chat synthesis shape**; load `i-have-adhd` at Step 4)
+- `references/manifest-verify.md` (this skill — coordinator use of the zer CLI: manifest scopes + line-verify gate)
 - `zereight-ai-delivery-gate` (`~/.agents/skills/zereight-ai-delivery-gate/SKILL.md` + `references/tiers.md` — **coordinator synthesis phase only**; A7 evidence + 4-tier relabel; no extra subagent pass)
 
 Required subagent review passes:
