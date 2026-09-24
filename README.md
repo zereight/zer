@@ -1,16 +1,17 @@
 # zer
 
-Public repo for the `zer` CLI. The review procedure stays the `zereight-review` skill in `skills/zereight-review/`. `zer` does not call a model.
+`zer` reads a git diff and checks that finding line numbers sit inside that diff. It does not call a model.
 
 ## Layout
 
-- `skills/zereight-review/` — skill source of truth (SKILL.md + references)
 - `zer/` — Rust CLI source (`zer manifest`, `zer verify`)
 - `schema/` — finding record shape enforced by `zer verify`
+- `install.sh` — install a prebuilt binary
+- `release.sh` — tag and push a release
 
 ## zer
 
-`zer` is the deterministic helper CLI for zereight-review: it builds review manifests from diffs and validates finding line refs. Install once per machine.
+`zer` builds review manifests from diffs and validates finding line refs. Install once per machine.
 
 ### Prerequisites
 
