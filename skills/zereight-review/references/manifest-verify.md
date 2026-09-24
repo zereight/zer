@@ -15,5 +15,6 @@ Deterministic helpers live in the `zer` CLI (installed via `cargo install --path
 ## Rules
 
 - The manifest never promotes a finding; it only scopes passes and kills hallucinated line refs.
+- Spawn prompts take scope **paths**, never a pasted diff. First line: `files: manifest.scopes.<key>.files only. No diff body.` Baseline-class passes (baseline, regression, file coverage, quality, thermo-nuclear, ponytail) use `files[].path`. Motion uses `scopes.motion.files`, test quality uses `scopes.tests.files`, navigation uses `scopes.navigation.files`, React/RN uses `scopes.react_rn.files`. Orchestration gets no paths.
 - Scope over-trigger is expected. A spawned-but-empty pass is cheaper than a missed axis.
 - Keep `schema/finding.schema.json` and the `zer verify` severity list in sync by hand.

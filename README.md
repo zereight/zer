@@ -1,6 +1,6 @@
-# zereight-review
+# zer
 
-Public home of the zereight-review skill and its deterministic helpers.
+Public repo for the `zer` CLI. The review procedure stays the `zereight-review` skill in `skills/zereight-review/`. `zer` does not call a model.
 
 ## Layout
 
@@ -23,8 +23,8 @@ Public home of the zereight-review skill and its deterministic helpers.
 
 ### Install
 
-    git clone https://github.com/zereight/zereight-review.git
-    cd zereight-review
+    git clone https://github.com/zereight/zer.git
+    cd zer
     cargo install --path zer --locked
 
 `--locked` pins the exact dependency versions from `zer/Cargo.lock` for reproducible builds.

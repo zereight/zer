@@ -219,8 +219,26 @@ That is a **spawn contract violation** — retry with `context` before recording
 `ensemble blocked`.
 
 **`context` must include:** PR id/repo/branches/commits, review worktree path,
-three-dot diff ref, PR axis, `inherit` model policy, changed-file list or stat,
-preflight rows already run. Each `tasks[].task` stays pass-specific.
+three-dot diff ref, PR axis, `inherit` model policy, changed-file **paths**
+from `zer manifest` (no diff body), preflight summary rows already run.
+Each `tasks[].task` stays pass-specific.
+
+**Token contract (MANDATORY) — first line of every spawn prompt:**
+
+`files: manifest.scopes.<key>.files only. No diff body.`
+
+- Do not paste a diff, hunk, or `SKILL.md` into a pass prompt. The coordinator
+  owns `SKILL.md`. A pass gets its Required basis doc and a path list.
+- File lists come from `zer manifest` scopes, not from re-reading the whole diff:
+  - motion → `scopes.motion.files`
+  - test quality → `scopes.tests.files`
+  - navigation / flow (nav hunks) → `scopes.navigation.files`
+  - React/RN → `scopes.react_rn.files`
+  - baseline, regression, file coverage, quality, thermo-nuclear, ponytail →
+    `files[].path` only (still no diff body; they open those paths)
+- Orchestration gets axis names only. No source paths.
+- Passes open files themselves. Coordinator re-opens a file only to attach
+  Rule 7 evidence before raising a finding.
 
 **Parallel spawn example (Pi batch `task` or `subagent` — parent session model):**
 
@@ -298,7 +316,7 @@ builds. Error `Subagents are not implemented by this client` →
   "subagent_type": "generalPurpose",
   "model": "inherit",
   "description": "Baseline full-diff review",
-  "prompt": "SHARED CONTEXT: PR … worktree … diff … axis … inherit.\n\nPass: Baseline. Skill: code-review. …"
+  "prompt": "files: manifest.files[].path only. No diff body.\n\nSHARED CONTEXT: PR … worktree … axis … inherit. Paths from zer manifest, not a pasted diff.\n\nPass: Baseline. Skill: code-review. …"
 }
 ```
 
