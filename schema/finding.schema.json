@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "zereight-review finding record",
+  "description": "Documentation of the finding shape. Enforced by zer/src/verify.rs; keep both in sync. Severity maps to skill marks: critical=red, major=orange, minor=yellow, trivial=blue, info=white, refactor=wrench.",
+  "type": "object",
+  "required": ["id", "file", "line", "severity", "title", "evidence"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "file": { "type": "string", "minLength": 1, "description": "Repo-relative path, must appear in the manifest" },
+    "line": { "type": "integer", "minimum": 1, "description": "New-file line number, must fall inside a changed hunk" },
+    "severity": { "enum": ["critical", "major", "minor", "trivial", "info", "refactor"] },
+    "title": { "type": "string", "minLength": 1 },
+    "evidence": { "type": "string", "minLength": 1 },
+    "fix": { "type": "string" }
+  },
+  "additionalProperties": true
+}
