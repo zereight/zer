@@ -64,6 +64,14 @@ and persist it in `~/.zshrc` (macOS default) or `~/.bashrc`, then open a new ter
     git pull && cargo install --path zer --locked   # update (from the repo root)
     cargo uninstall zer                             # uninstall
 
+### Release
+
+From a clean `main` that matches `origin/main`:
+
+    ./release.sh 0.2.0
+
+That writes the version into `zer/Cargo.toml` and `zer/Cargo.lock`, commits, tags `v0.2.0`, and pushes the tag. The `release` GitHub Action builds the four binaries and publishes the GitHub Release. `main` commits alone do not publish.
+
 ### Developing
 
     cargo test --manifest-path zer/Cargo.toml   # run the suite
