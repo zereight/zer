@@ -21,7 +21,19 @@ Public repo for the `zer` CLI. The review procedure stays the `zereight-review` 
 
   (accept the defaults when prompted), then restart your shell (or run `source "$HOME/.cargo/env"`) and re-run `cargo --version`.
 
-### Install
+### Install (prebuilt binary)
+
+macOS arm64/x86_64 and Linux x86_64/arm64. The script downloads a release asset and checks `SHA256SUMS` before copy. No Rust toolchain required.
+
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/zereight/zer/main/install.sh | sh
+
+Pin a version:
+
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/zereight/zer/main/install.sh | ZER_VERSION=v0.1.0 sh
+
+Binary lands in `~/.local/bin`. If that directory is not on `PATH`, the script prints the `export` line.
+
+### Install (from source)
 
     git clone https://github.com/zereight/zer.git
     cd zer
